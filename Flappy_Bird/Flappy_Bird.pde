@@ -7,6 +7,7 @@ int lowerPipeHeight = (int) random(100,300);
 int pipeGap = 200;
 int Xspeed = 5;
 boolean gameRunning = true;
+int s = 0;
 void setup(){
   size(500,500);
   
@@ -33,12 +34,14 @@ void keyPressed(){
      x = 250;
      y = 250;
      X = 400;
+     s = 0;
   }
 }
 void teleportPipes(){
   if(X == 0){
  X = width;
  lowerPipeHeight = (int) random(100,400);
+ s++;
   }
   
 }
@@ -62,13 +65,14 @@ void game(){
   teleportPipes();
   fill(41,142,45);
   rect(X,0,100,lowerPipeHeight);
+  fill(237,245,238);
+  text("Score: " + s, 250, 125);
  if(intersectsPipes()){
    gameRunning = false;
-   if(x == 0){
-     gameRunning = false;
+    
    }
  }
-}
+
 
 void endGame(){
   fill(237,245,238);
