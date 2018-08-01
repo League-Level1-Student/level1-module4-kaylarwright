@@ -1,8 +1,8 @@
 int x = 250;
-int y = 250;
-Car c= new Car(250,0);
-Car a = new Car(250,250);
-Car r = new Car(250,450);
+int y = 450;
+Car c= new Car(250,50);
+Car a = new Car(250,200);
+Car r = new Car(250,350);
 
 void setup(){
   size(500,500);
@@ -18,6 +18,19 @@ void draw(){
   c.update();
   a.update();
   r.update();
+  
+  if(intersects(c)){
+    x=250;
+    y=450;
+  }
+  if(intersects(a)){
+    x=250;
+    y=450;
+  }
+  if(intersects(r)){
+    x=250;
+    y=450;
+  }
 }
 
 void keyPressed()
@@ -25,19 +38,19 @@ void keyPressed()
       if(key == CODED){
             if(keyCode == UP)
             {
-                  y-=10;
+                  y-=45;
             }
             else if(keyCode == DOWN)
             {
-                  y+=10; 
+                  y+=45; 
             }
             else if(keyCode == RIGHT)
             {
-                  x+=10;
+                  x+=45;
             }
             else if(keyCode == LEFT)
             {
-                  x-=10;
+                  x-=45;
             }
       }
 }
@@ -79,7 +92,8 @@ class Car{
   }
   
   void draw(){
-    fill(118,230,234);
+    fill(245,64,64);
+    stroke(143,5,5);
     rect(X,Y,S,w);
    
   }
@@ -88,11 +102,30 @@ class Car{
     X+= Xspeed;
     draw();
     if(X<0){
-      X=250;
+      X=width;
     }
     if(X>width){
-      X=250;
+      X=0;
     }
   }
-  
+ 
+ int getX(){
+  return X; 
+ }
+ int getY(){
+   return Y;
+ }
+ int getSize(){
+   return S;
+ }
+}
+boolean intersects(Car car) {
+      if ((y > car.getY() && y < car.getY()+50) && (x > car.getX() && x < car.getX()+car.getSize()))
+      {
+             return true;
+      }
+      else
+      {
+             return false;
+      }
 }
