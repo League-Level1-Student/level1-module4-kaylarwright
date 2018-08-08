@@ -1,4 +1,4 @@
-package extra;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +17,7 @@ public class test implements ActionListener{
 	JTextField tf = new JTextField(5);
 	JButton button = new JButton();
 	JButton Button = new JButton();
+	
 public static void main(String[] args) {
 	
 	test t = new test();
@@ -35,19 +36,26 @@ test(){
 	panel.add(Button);
 	button.addActionListener(this);
 	Button.addActionListener(this);
+	
 	frame.pack();
 }
 @Override
 public void actionPerformed(ActionEvent e) {
+	JButton buttonPressed = (JButton) e.getSource();
+	if (buttonPressed == button) {
 	String value = tf.getText();
-	String answer = "An anchor";
+	String answer = "Anchor";
 	if (value.equalsIgnoreCase(answer)) {
 		JOptionPane.showMessageDialog(null, "Correct");
 	}else {
 		JOptionPane.showMessageDialog(null, "Incorrect");
 	}
-	
+	}
+	if (buttonPressed == Button) {
+		JOptionPane.showMessageDialog(null, "They stop ships");
+	}
+	}
 }
 
-}
+
 
